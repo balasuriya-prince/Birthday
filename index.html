@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎂 Happy Birthday!</title>
+  <meta name="description" content="A cute, animated birthday wishes page with music, cake, balloons, confetti, and photo. Works great on mobile & desktop." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Poppins, sans-serif;
+      color: #fff;
+      background: linear-gradient(160deg, #0f1226, #1c1f3a);
+      overflow-x: hidden;
+    }
+    .app { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+    header { text-align: center; padding: 16px; font-size: 24px; font-weight: 700; }
+    main { display: grid; place-items: center; padding: 16px; }
+    .card { max-width: 900px; width: 96%; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; text-align: center; }
+    h1 { font-family: Pacifico, cursive; font-size: 42px; margin: 0; }
+    p { font-size: 18px; margin: 12px 0; }
+    .photo-frame img { width: 100%; max-width: 400px; border-radius: 16px; }
+    .cake-wrap { margin-top: 20px; }
+    .cake { width: min(460px, 90%); height: auto; }
+    .balloon { position: fixed; bottom: -120px; width: 60px; height: 80px; border-radius: 50% 50% 45% 45%; background: var(--bcolor); animation: floatUp linear infinite; }
+    .balloon::after { content: ""; position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); width: 2px; height: 36vh; background: rgba(255,255,255,0.22); }
+    @keyframes floatUp { from { transform: translateY(0) } to { transform: translateY(-120vh) } }
+    #confetti { position: fixed; inset: 0; pointer-events: none; }
+    footer { text-align: center; padding: 10px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>🎉 Happy Birthday 🎉</header>
+
+    <main>
+      <div class="card">
+        <h1>Happy Birthday Rowdy!</h1>
+        <p>Happy Birthday, my love. You are the sunshine in my life and the peace in my chaos. Every day with you is a beautiful journey, and I'm so lucky to walk through life with you. On your special day, I I just want to remind you how much you are loved, admired, and cherished. I hope your year ahead is filled with the same joy and warmth you bring to everyone around you.
+          Wishing you joy, laughter, and cake—lots of cake! 🎂</p>
+
+        <div class="photo-frame">
+          <img src="little princess.JPG" alt="Birthday photo" />
+          <img src="rowdy.JPG" alt="Birthday photo" />
+          <img src="love.JPG" alt="Birthday photo" />
+        </div>
+
+        <div class="cake-wrap">
+          <svg class="cake" viewBox="0 0 360 300">
+            <defs>
+              <linearGradient id="icing" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ffd1e8"/>
+                <stop offset="100%" stop-color="#ff8bcf"/>
+              </linearGradient>
+              <linearGradient id="layer" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ffe39e"/>
+                <stop offset="100%" stop-color="#ffcf66"/>
+              </linearGradient>
+              <radialGradient id="flame" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#fff2a8"/>
+                <stop offset="60%" stop-color="#ffb703"/>
+                <stop offset="100%" stop-color="#ff6b00"/>
+              </radialGradient>
+              <style>
+                @keyframes flicker { 0%,100%{ transform: translateY(0) scale(1)} 50%{ transform: translateY(-2px) scale(1.05)} }
+                .flame { animation: flicker .5s infinite ease-in-out; transform-origin: center bottom; filter: drop-shadow(0 0 10px #ffdd55); }
+              </style>
+            </defs>
+            <ellipse cx="180" cy="260" rx="140" ry="18" fill="#d9ecff" opacity="0.6"/>
+            <rect x="60" y="170" width="240" height="70" rx="16" fill="url(#layer)"/>
+            <path d="M60 190 C90 210, 110 180, 140 200 S190 210, 240 190 S270 210, 300 190 L300 170 L60 170 Z" fill="url(#icing)"/>
+            <rect x="90" y="120" width="180" height="60" rx="14" fill="url(#layer)"/>
+            <path d="M90 135 C110 155, 135 125, 160 145 S200 155, 230 135 S250 155, 270 135 L270 120 L90 120 Z" fill="url(#icing)"/>
+            <g>
+              <rect x="135" y="75" width="12" height="45" rx="4" fill="#8ecae6"/>
+              <rect x="174" y="70" width="12" height="50" rx="4" fill="#bde0fe"/>
+              <rect x="213" y="75" width="12" height="45" rx="4" fill="#8ecae6"/>
+              <g class="flame">
+                <ellipse cx="141" cy="70" rx="6" ry="10" fill="url(#flame)"/>
+                <ellipse cx="180" cy="64" rx="6" ry="10" fill="url(#flame)"/>
+                <ellipse cx="219" cy="70" rx="6" ry="10" fill="url(#flame)"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </main>
+
+    <footer>Made with ❤️. For my lovely Kuttyma· <span id="year"></span></footer>
+  </div>
+
+  <canvas id="confetti"></canvas>
+  <audio id="audio" autoplay loop src="oh-my-kadavule-bgm-kadhaippoma-song-ringtone1909733681.mp3"></audio>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Balloons
+    function spawnBalloons(count = 12) {
+      for (let i = 0; i < count; i++) {
+        const b = document.createElement('div');
+        b.className = 'balloon';
+        const hue = Math.floor(Math.random() * 360);
+        b.style.setProperty('--bcolor', `linear-gradient(180deg, hsl(${hue} 90% 65%), hsl(${hue} 80% 50%))`);
+        b.style.left = Math.random() * 100 + 'vw';
+        b.style.animationDuration = (18 + Math.random() * 14) + 's';
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 35000);
+      }
+    }
+    spawnBalloons(15);
+    setInterval(() => spawnBalloons(5), 4000);
+
+    // Confetti
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W, H, confetti = [];
+    function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    addEventListener('resize', resize); resize();
+
+    function addConfetti(amount = 180) {
+      for (let i = 0; i < amount; i++) {
+        confetti.push({ x: Math.random() * W, y: -10, r: 5 + Math.random() * 6, a: Math.random() * Math.PI * 2, s: 2 + Math.random() * 3, w: 8 + Math.random() * 8, h: 6 + Math.random() * 10, hue: Math.floor(Math.random() * 360)});
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, W, H);
+      confetti.forEach((p) => {
+        p.y += p.s;
+        p.x += Math.sin(p.a += 0.03);
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.a);
+        ctx.fillStyle = `hsl(${p.hue} 90% 60%)`;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+      });
+      confetti = confetti.filter(p => p.y < H + 30);
+      requestAnimationFrame(drawConfetti);
+    }
+    requestAnimationFrame(drawConfetti);
+    addConfetti();
+  </script>
+</body>
+</html>
